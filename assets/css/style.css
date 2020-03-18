@@ -496,6 +496,13 @@ body {
   cursor: pointer;
 }
 
+.error {
+  color: red;
+  text-align: left;
+  font-size: 1.2rem;
+  margin-top: 5px;
+}
+
 /* Media responsive queries
 
 when is WIDTH 765 and lower execute this queries
