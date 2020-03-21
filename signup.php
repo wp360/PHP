@@ -1,6 +1,7 @@
 <?php
   include "init.php";
   // $db = new db;
+  $obj = new base_class;
   if(isset($_POST['signup'])) {
     $full_name = $_POST['full_name'];
     $email = $_POST['email'];
@@ -8,7 +9,7 @@
     $img_name = $_FILES['img']['name'];
     $img_tmp = $_FILES['img']['tmp_name'];
     // 图片
-    $img_path = "assets/img";
+    $img_path = "assets/img/";
     $extensions = ['jpg', 'jpeg', 'png'];
     $img_ext = explode(".", $img_name);
     $img_extension = end($img_ext);
@@ -28,7 +29,7 @@
         $email_error = "输入邮箱格式不正确！";
         $email_status = "";
       } else {
-        if($obj->Normal_Query("SELECT email FORM users WHERE email = ?", array($email))) {
+        if($obj->Normal_Query("SELECT email FROM users WHERE email = ?", array($email))) {
           if($obj->Count_Rows() == 0) {
             // 邮箱输入正确
           } else {
@@ -59,6 +60,16 @@
       $photo_status = "";
     } else {
       // 图片上传正确
+    }
+
+    if(!empty($name_status) && !empty($email_status) && !empty($password_status) && !empty($photo_status)) {
+      // echo "提交";
+      move_uploaded_file($img_tmp, "$img_path/$img_name");
+      $status = 0;
+      if($obj->Normal_Query("INSERT INTO users(name, email, password, image, status) VALUES (?,?,?,?,?)",
+      [$full_name, $email, password_hash($password, PASSWORD_DEFAULT), $img_name, $status])) {
+        echo "提交成功！";
+      }
     }
   }
 ?>

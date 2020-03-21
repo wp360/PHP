@@ -4,7 +4,7 @@
       <h2 class="form-heading">生成新的账户</h2>
     </div>
     <div class="group">
-      <input type="text" name="full_name" class="control" placeholder="输入用户名">
+      <input type="text" name="full_name" class="control" placeholder="输入用户名" value="<?php if(isset($full_name)): echo $full_name; endif; ?>">
       <div class="name-error error">
         <?php if (isset($name_error)) : ?>
           <?php echo $name_error; ?>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="group">
-      <input type="email" name="email" class="control" placeholder="输入邮箱">
+      <input type="email" name="email" class="control" placeholder="输入邮箱" value="<?php if(isset($email)): echo $email; endif; ?>">
       <div class="email-error error">
         <?php if (isset($email_error)) : ?>
           <?php echo $email_error; ?>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="group">
-      <input type="password" name="password" class="control" placeholder="输入密码">
+      <input type="password" name="password" class="control" placeholder="输入密码" value="<?php if(isset($password)): echo $password; endif; ?>">
       <div class="password-error error">
         <?php if (isset($password_error)) : ?>
           <?php echo $password_error; ?>
