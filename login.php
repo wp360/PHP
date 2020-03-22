@@ -1,5 +1,43 @@
 <?php
 include "init.php";
+$obj = new base_class;
+if(isset($_POST['login'])) {
+  $email = $obj->security($_POST['email']);
+  $password = $obj->security($_POST['password']);
+  $email_status = $password_status = 1;
+  if(empty($email)) {
+    $email_error = "邮箱不能为空！";
+    $email_status = "";
+  }
+
+  if(empty($password)) {
+    $password_error = "密码不能为空！";
+    $password_status = "";
+  }
+
+  // 登录判断
+  if(!empty($email_status) && !empty($password_status)) {
+    if($obj->Normal_Query("SELECT * FROM users WHERE email = ?", [$email])) {
+      if($obj->Count_Rows() == 0) {
+        $email_error = "请输入正确的邮箱";
+      } else{
+        $row = $obj->Single_Result();
+        $db_email = $row->email;
+        $db_password = $row->password;
+        $user_id = $row->id;
+        $user_name = $row->name;
+        // 判断密码输入是否正确
+        if(password_verify($password, $db_password)) {
+          $obj->Create_Session("user_name", $user_name);
+          $obj->Create_Session("user_id", $user_id);
+          header("location:index.php");
+        } else {
+          $password_error = "密码错误，请输入正确密码！";
+        }
+      }
+    }
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

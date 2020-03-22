@@ -30,5 +30,9 @@
       $_SESSION[$session_name] = $session_value;
       // $_SESSION["success"] = "你的账户创建成功！";
     }
+
+    public function Single_Result() {
+      return $this->Query->fetch(PDO::FETCH_OBJ);
+    }
   }
 ?>
