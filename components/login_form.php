@@ -1,4 +1,10 @@
 <div class="form-area">
+  <?php if(isset($_SESSION['account_success'])): ?>
+    <div class="alert alert-success">
+      <?php echo $_SESSION['account_success']; ?>
+    </div>
+  <?php endif; ?>
+  <?php unset($_SESSION['account_success']); ?>
   <form action="" method="POST">
     <div class="group">
       <h2 class="form-heading">用户登录</h2>
