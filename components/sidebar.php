@@ -9,7 +9,8 @@
     </li>
     <li>
       <a href="index.php">
-        首页
+        <?php echo ucfirst($_SESSION['user_name']); ?>
+        <!-- 首页 -->
         <span class="cool-hover"></span>
       </a>
     </li>
@@ -28,6 +29,12 @@
     <li>
       <a href="#">
         好友
+        <span class="cool-hover"></span>
+      </a>
+    </li>
+    <li>
+      <a href="logout.php">
+        退出
         <span class="cool-hover"></span>
       </a>
     </li>
