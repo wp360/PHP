@@ -26,10 +26,12 @@ if(isset($_POST['login'])) {
         $db_password = $row->password;
         $user_id = $row->id;
         $user_name = $row->name;
+        $user_image = $row->image;
         // 判断密码输入是否正确
         if(password_verify($password, $db_password)) {
           $obj->Create_Session("user_name", $user_name);
           $obj->Create_Session("user_id", $user_id);
+          $obj->Create_Session("user_image", $user_image);
           header("location:index.php");
         } else {
           $password_error = "密码错误，请输入正确密码！";

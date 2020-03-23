@@ -3,7 +3,7 @@
     <li>
       <a href="#">
         <span class="profile-img-span">
-          <img src="assets/img/profile.png" alt="profile image" class="profile-img">
+          <img src="assets/img/<?php echo $_SESSION['user_image'] ?>" alt="profile image" class="profile-img">
         </span>
       </a>
     </li>

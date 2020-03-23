@@ -14,8 +14,8 @@
 </head>
 
 <body>
-  <!-- 成功提醒！ -->
-  <?php if(isset($_SESSION['password_updated'])): ?>
+  <!-- 密码修改成功提醒！ -->
+  <?php if (isset($_SESSION['password_updated'])) : ?>
     <div class="flash success-flash">
       <span class="remove">&times;</span>
       <div class="flash-heading">
@@ -27,6 +27,19 @@
     </div>
   <?php endif; ?>
   <?php unset($_SESSION['password_updated']); ?>
+  <!-- 用户名修改成功提醒！ -->
+  <?php if (isset($_SESSION['name_updated'])) : ?>
+    <div class="flash success-flash">
+      <span class="remove">&times;</span>
+      <div class="flash-heading">
+        <h3><span class="checked">&#10004;</span>提示</h3>
+      </div>
+      <div class="flash-body">
+        <p><?php echo $_SESSION['name_updated'] ?></p>
+      </div>
+    </div>
+  <?php endif; ?>
+  <?php unset($_SESSION['name_updated']); ?>
   <!-- 失败提醒 -->
   <!-- <div class="flash error-flash">
     <span class="remove">&times;</span>
